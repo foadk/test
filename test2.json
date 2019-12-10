@@ -1,0 +1,2505 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/foadkh/cloud-server-core/1.0.0"
+  } ],
+  "info" : {
+    "description" : "Cloud Server Core API Documentation",
+    "version" : "1.0.0",
+    "title" : "Cloud Server Core",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "Firewall",
+    "description" : "Firewall Calls"
+  }, {
+    "name" : "Chart",
+    "description" : ""
+  }, {
+    "name" : "Project",
+    "description" : ""
+  }, {
+    "name" : "VM",
+    "description" : ""
+  }, {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/firewalls" : {
+      "get" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "firewall list",
+        "description" : "TODO: Add Description",
+        "operationId" : "firewalllist",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "create firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "createfirewall",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/createfirewallrequest"
+              },
+              "example" : {
+                "name" : "group 3",
+                "inbound_rules" : [ {
+                  "protocol" : "tcp",
+                  "ports" : "86-190",
+                  "sources" : {
+                    "addresses" : [ "1.4.1.4" ],
+                    "droplet_ids" : [ 16113 ]
+                  }
+                } ],
+                "outbound_rules" : [ {
+                  "protocol" : "udp",
+                  "ports" : 2020,
+                  "destinations" : {
+                    "addresses" : [ "2.1.2.1" ],
+                    "droplet_ids" : [ 16112, 16113 ]
+                  }
+                } ],
+                "droplet_ids" : [ 16112, 16113 ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/firewalls/{ruleGroupId}" : {
+      "get" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "firewall info",
+        "description" : "TODO: Add Description",
+        "operationId" : "firewallinfo",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "update firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "updatefirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/updatefirewallrequest"
+              },
+              "example" : {
+                "name" : "group 3",
+                "inbound_rules" : [ {
+                  "protocol" : "tcp",
+                  "ports" : "8-90",
+                  "sources" : {
+                    "addresses" : [ "1.4.1.4" ],
+                    "droplet_ids" : [ 16113 ]
+                  }
+                } ],
+                "outbound_rules" : [ {
+                  "protocol" : "tcp",
+                  "ports" : 22,
+                  "destinations" : {
+                    "addresses" : [ "2.1.2.1", "2.5.2.5" ],
+                    "droplet_ids" : [ 16112 ]
+                  }
+                } ],
+                "droplet_ids" : [ 16112, 16113 ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "delete firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "deletefirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/firewalls/{ruleGroupId}/droplets" : {
+      "post" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "add server to firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "addservertofirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/addservertofirewallrequest"
+              },
+              "example" : {
+                "droplet_ids" : [ 16112, 16113 ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "delete server from firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "deleteserverfromfirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/deleteserverfromfirewallrequest"
+              },
+              "example" : {
+                "droplet_ids" : [ 16113 ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/firewalls/{ruleGroupId}/rules" : {
+      "post" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "add rule to firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "addruletofirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/addruletofirewallrequest"
+              },
+              "example" : {
+                "inbound_rules" : [ {
+                  "rule_type" : "Port Range",
+                  "protocol" : "tcp",
+                  "ports" : "86-190",
+                  "sources" : {
+                    "addresses" : [ "1.4.1.4" ],
+                    "droplet_ids" : [ 16113 ]
+                  }
+                } ],
+                "outbound_rules" : [ {
+                  "rule_type" : "Port Range",
+                  "protocol" : "udp",
+                  "ports" : 2020,
+                  "destinations" : {
+                    "addresses" : [ "2.1.2.1" ],
+                    "droplet_ids" : [ 16112, 16113 ]
+                  }
+                } ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "Firewall" ],
+        "summary" : "remove rule from firewall",
+        "description" : "TODO: Add Description",
+        "operationId" : "removerulefromfirewall",
+        "parameters" : [ {
+          "name" : "ruleGroupId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/removerulefromfirewallrequest"
+              },
+              "example" : {
+                "inbound_rules" : [ {
+                  "protocol" : "tcp",
+                  "ports" : "86-190",
+                  "sources" : {
+                    "addresses" : [ "1.4.1.4" ],
+                    "droplet_ids" : [ 16113 ]
+                  }
+                } ],
+                "outbound_rules" : [ ]
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/io/{srv}/{period}" : {
+      "get" : {
+        "tags" : [ "Chart" ],
+        "summary" : "io chart",
+        "description" : "TODO: Add Description",
+        "operationId" : "iochart",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "period",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "month"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/traffic/{srv}/{period}" : {
+      "get" : {
+        "tags" : [ "Chart" ],
+        "summary" : "traffic chart",
+        "description" : "TODO: Add Description",
+        "operationId" : "trafficchart",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "period",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "30days"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/cpu/{srv}/{period}" : {
+      "get" : {
+        "tags" : [ "Chart" ],
+        "summary" : "cpu chart",
+        "description" : "TODO: Add Description",
+        "operationId" : "cpuchart",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "period",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "month"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/project" : {
+      "get" : {
+        "tags" : [ "Project" ],
+        "summary" : "get projects",
+        "description" : "TODO: Add Description",
+        "operationId" : "getprojects",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "Project" ],
+        "summary" : "create project",
+        "description" : "TODO: Add Description",
+        "operationId" : "createproject",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "title" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string",
+                    "example" : "project 1"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/project/{projectId}/servers" : {
+      "get" : {
+        "tags" : [ "Project" ],
+        "summary" : "get servers",
+        "description" : "TODO: Add Description",
+        "operationId" : "getservers",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/project/{projectId}" : {
+      "put" : {
+        "tags" : [ "Project" ],
+        "summary" : "update project",
+        "description" : "TODO: Add Description",
+        "operationId" : "updateproject",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "title" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string",
+                    "example" : "new project 1"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "Project" ],
+        "summary" : "delete project",
+        "description" : "TODO: Add Description",
+        "operationId" : "deleteproject",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 3
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/project/{projectId}/server/{srv}" : {
+      "put" : {
+        "tags" : [ "Project" ],
+        "summary" : "add server to project",
+        "description" : "TODO: Add Description",
+        "operationId" : "addservertoproject",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1
+          }
+        }, {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "Project" ],
+        "summary" : "remove server from project",
+        "description" : "TODO: Add Description",
+        "operationId" : "removeserverfromproject",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1
+          }
+        }, {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16113
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/info" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "get info",
+        "description" : "TODO: Add Description",
+        "operationId" : "getinfo",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/list" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "get vm list",
+        "description" : "TODO: Add Description",
+        "operationId" : "getvmlist",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/changeTitle" : {
+      "put" : {
+        "tags" : [ "VM" ],
+        "summary" : "change title",
+        "description" : "TODO: Add Description",
+        "operationId" : "changetitle",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "title" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string",
+                    "example" : "server 1"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/dailybudget/set" : {
+      "put" : {
+        "tags" : [ "VM" ],
+        "summary" : "set daily budget",
+        "description" : "TODO: Add Description",
+        "operationId" : "setdailybudget",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "daily_budget" ],
+                "type" : "object",
+                "properties" : {
+                  "daily_budget" : {
+                    "type" : "integer",
+                    "format" : "int64",
+                    "example" : -1
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/os/list/all" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "get all os list",
+        "description" : "TODO: Add Description",
+        "operationId" : "getalloslist",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/os/list/freecloud" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "get free cloud os list",
+        "description" : "TODO: Add Description",
+        "operationId" : "getfreecloudoslist",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/os/list" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "get os list for a server",
+        "description" : "TODO: Add Description",
+        "operationId" : "getoslistforaserver",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/freecloud/display" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "show free cloud",
+        "description" : "TODO: Add Description",
+        "operationId" : "showfreecloud",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/start" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "start vm",
+        "description" : "TODO: Add Description",
+        "operationId" : "startvm",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/stop" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "stop vm",
+        "description" : "TODO: Add Description",
+        "operationId" : "stopvm",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/reset" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "reset vm",
+        "description" : "TODO: Add Description",
+        "operationId" : "resetvm",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/ip/list" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "ip list",
+        "description" : "TODO: Add Description",
+        "operationId" : "iplist",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/createVm" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "create vm",
+        "description" : "TODO: Add Description",
+        "operationId" : "createvm",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "title", "ram", "cpu", "hdd", "os" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string",
+                    "example" : "vm3"
+                  },
+                  "ram" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 2048
+                  },
+                  "cpu" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 2
+                  },
+                  "hdd" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 50
+                  },
+                  "os" : {
+                    "type" : "string",
+                    "example" : "centos7-x64-nonlvm"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/createVm/privateCloud" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "create vm in private cloud",
+        "description" : "TODO: Add Description",
+        "operationId" : "createvminprivatecloud",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "title", "ram", "cpu", "hdd", "os", "cid" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string",
+                    "example" : "vm2"
+                  },
+                  "ram" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 2048
+                  },
+                  "cpu" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 2
+                  },
+                  "hdd" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 25
+                  },
+                  "os" : {
+                    "type" : "string",
+                    "example" : "centos7-x64-nonlvm"
+                  },
+                  "cid" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 382
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/rebuildVm" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "rebuild vm",
+        "description" : "TODO: Add Description",
+        "operationId" : "rebuildvm",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "os" ],
+                "type" : "object",
+                "properties" : {
+                  "os" : {
+                    "type" : "string",
+                    "example" : "windows2016"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/changeSpecs" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "change specs",
+        "description" : "TODO: Add Description",
+        "operationId" : "changespecs",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "ram", "cpu" ],
+                "type" : "object",
+                "properties" : {
+                  "ram" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 4096
+                  },
+                  "cpu" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 3
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/changeRootPassword" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "change root password",
+        "description" : "TODO: Add Description",
+        "operationId" : "changerootpassword",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/createFreeCloud" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "create free cloud",
+        "description" : "TODO: Add Description",
+        "operationId" : "createfreecloud",
+        "parameters" : [ {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "os" ],
+                "type" : "object",
+                "properties" : {
+                  "os" : {
+                    "type" : "string",
+                    "example" : "centos7-x64-nonlvm"
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/bills" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "bills",
+        "description" : "TODO: Add Description",
+        "operationId" : "bills",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/rescue/enable" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "enable rescue",
+        "description" : "TODO: Add Description",
+        "operationId" : "enablerescue",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/rescue/disable" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "disable rescue",
+        "description" : "TODO: Add Description",
+        "operationId" : "disablerescue",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/vnc" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "Vnc",
+        "description" : "TODO: Add Description",
+        "operationId" : "Vnc",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/addBandwidth" : {
+      "post" : {
+        "tags" : [ "VM" ],
+        "summary" : "add bandwidth",
+        "description" : "TODO: Add Description",
+        "operationId" : "addbandwidth",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 16112
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "encoding" : { },
+              "schema" : {
+                "required" : [ "amount" ],
+                "type" : "object",
+                "properties" : {
+                  "amount" : {
+                    "type" : "integer",
+                    "format" : "int32",
+                    "example" : 1000
+                  }
+                }
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/{srv}/addBandwidth/getConfigs" : {
+      "get" : {
+        "tags" : [ "VM" ],
+        "summary" : "add bandwidth - get configs",
+        "description" : "TODO: Add Description",
+        "operationId" : "addbandwidth-getconfigs",
+        "parameters" : [ {
+          "name" : "srv",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500011
+          }
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "",
+          "required" : true,
+          "style" : "simple",
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/inventory" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "searches inventory",
+        "operationId" : "searchInventory",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "searchString",
+          "description" : "pass an optional search string for looking up inventory",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/InventoryItem"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "adds an inventory item",
+        "operationId" : "addInventory",
+        "description" : "Adds an item to the system",
+        "responses" : {
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InventoryItem"
+              }
+            }
+          },
+          "description" : "Inventory item to add"
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "createfirewallrequest" : {
+        "title" : "createfirewallrequest",
+        "required" : [ "name", "inbound_rules", "outbound_rules", "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "inbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InboundRule"
+            },
+            "description" : ""
+          },
+          "outbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OutboundRule"
+            },
+            "description" : ""
+          },
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "name" : "group 3",
+          "inbound_rules" : [ {
+            "protocol" : "tcp",
+            "ports" : "86-190",
+            "sources" : {
+              "addresses" : [ "1.4.1.4" ],
+              "droplet_ids" : [ 16113 ]
+            }
+          } ],
+          "outbound_rules" : [ {
+            "protocol" : "udp",
+            "ports" : 2020,
+            "destinations" : {
+              "addresses" : [ "2.1.2.1" ],
+              "droplet_ids" : [ 16112, 16113 ]
+            }
+          } ],
+          "droplet_ids" : [ 16112, 16113 ]
+        }
+      },
+      "InboundRule" : {
+        "title" : "InboundRule",
+        "required" : [ "protocol", "ports", "sources" ],
+        "type" : "object",
+        "properties" : {
+          "protocol" : {
+            "type" : "string"
+          },
+          "ports" : {
+            "type" : "string"
+          },
+          "sources" : {
+            "$ref" : "#/components/schemas/Sources"
+          }
+        },
+        "example" : {
+          "protocol" : "tcp",
+          "ports" : "86-190",
+          "sources" : {
+            "addresses" : [ "1.4.1.4" ],
+            "droplet_ids" : [ 16113 ]
+          }
+        }
+      },
+      "Sources" : {
+        "title" : "Sources",
+        "required" : [ "addresses", "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "addresses" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : ""
+          },
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "addresses" : [ "1.4.1.4" ],
+          "droplet_ids" : [ 16113 ]
+        }
+      },
+      "OutboundRule" : {
+        "title" : "OutboundRule",
+        "required" : [ "protocol", "ports", "destinations" ],
+        "type" : "object",
+        "properties" : {
+          "protocol" : {
+            "type" : "string"
+          },
+          "ports" : {
+            "type" : "string"
+          },
+          "destinations" : {
+            "$ref" : "#/components/schemas/Destinations"
+          }
+        },
+        "example" : {
+          "protocol" : "udp",
+          "ports" : 2020,
+          "destinations" : {
+            "addresses" : [ "2.1.2.1" ],
+            "droplet_ids" : [ 16112, 16113 ]
+          }
+        }
+      },
+      "Destinations" : {
+        "title" : "Destinations",
+        "required" : [ "addresses", "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "addresses" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : ""
+          },
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "addresses" : [ "2.1.2.1" ],
+          "droplet_ids" : [ 16112, 16113 ]
+        }
+      },
+      "updatefirewallrequest" : {
+        "title" : "updatefirewallrequest",
+        "required" : [ "name", "inbound_rules", "outbound_rules", "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "inbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InboundRule"
+            },
+            "description" : ""
+          },
+          "outbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OutboundRule"
+            },
+            "description" : ""
+          },
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "name" : "group 3",
+          "inbound_rules" : [ {
+            "protocol" : "tcp",
+            "ports" : "8-90",
+            "sources" : {
+              "addresses" : [ "1.4.1.4" ],
+              "droplet_ids" : [ 16113 ]
+            }
+          } ],
+          "outbound_rules" : [ {
+            "protocol" : "tcp",
+            "ports" : 22,
+            "destinations" : {
+              "addresses" : [ "2.1.2.1", "2.5.2.5" ],
+              "droplet_ids" : [ 16112 ]
+            }
+          } ],
+          "droplet_ids" : [ 16112, 16113 ]
+        }
+      },
+      "addservertofirewallrequest" : {
+        "title" : "addservertofirewallrequest",
+        "required" : [ "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "droplet_ids" : [ 16112, 16113 ]
+        }
+      },
+      "deleteserverfromfirewallrequest" : {
+        "title" : "deleteserverfromfirewallrequest",
+        "required" : [ "droplet_ids" ],
+        "type" : "object",
+        "properties" : {
+          "droplet_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "droplet_ids" : [ 16113 ]
+        }
+      },
+      "addruletofirewallrequest" : {
+        "title" : "addruletofirewallrequest",
+        "required" : [ "inbound_rules", "outbound_rules" ],
+        "type" : "object",
+        "properties" : {
+          "inbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InboundRule2"
+            },
+            "description" : ""
+          },
+          "outbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OutboundRule2"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "inbound_rules" : [ {
+            "rule_type" : "Port Range",
+            "protocol" : "tcp",
+            "ports" : "86-190",
+            "sources" : {
+              "addresses" : [ "1.4.1.4" ],
+              "droplet_ids" : [ 16113 ]
+            }
+          } ],
+          "outbound_rules" : [ {
+            "rule_type" : "Port Range",
+            "protocol" : "udp",
+            "ports" : 2020,
+            "destinations" : {
+              "addresses" : [ "2.1.2.1" ],
+              "droplet_ids" : [ 16112, 16113 ]
+            }
+          } ]
+        }
+      },
+      "InboundRule2" : {
+        "title" : "InboundRule2",
+        "required" : [ "rule_type", "protocol", "ports", "sources" ],
+        "type" : "object",
+        "properties" : {
+          "rule_type" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "type" : "string"
+          },
+          "ports" : {
+            "type" : "string"
+          },
+          "sources" : {
+            "$ref" : "#/components/schemas/Sources"
+          }
+        },
+        "example" : {
+          "rule_type" : "Port Range",
+          "protocol" : "tcp",
+          "ports" : "86-190",
+          "sources" : {
+            "addresses" : [ "1.4.1.4" ],
+            "droplet_ids" : [ 16113 ]
+          }
+        }
+      },
+      "OutboundRule2" : {
+        "title" : "OutboundRule2",
+        "required" : [ "rule_type", "protocol", "ports", "destinations" ],
+        "type" : "object",
+        "properties" : {
+          "rule_type" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "type" : "string"
+          },
+          "ports" : {
+            "type" : "string"
+          },
+          "destinations" : {
+            "$ref" : "#/components/schemas/Destinations"
+          }
+        },
+        "example" : {
+          "rule_type" : "Port Range",
+          "protocol" : "udp",
+          "ports" : 2020,
+          "destinations" : {
+            "addresses" : [ "2.1.2.1" ],
+            "droplet_ids" : [ 16112, 16113 ]
+          }
+        }
+      },
+      "removerulefromfirewallrequest" : {
+        "title" : "removerulefromfirewallrequest",
+        "required" : [ "inbound_rules", "outbound_rules" ],
+        "type" : "object",
+        "properties" : {
+          "inbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InboundRule"
+            },
+            "description" : ""
+          },
+          "outbound_rules" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : ""
+          }
+        },
+        "example" : {
+          "inbound_rules" : [ {
+            "protocol" : "tcp",
+            "ports" : "86-190",
+            "sources" : {
+              "addresses" : [ "1.4.1.4" ],
+              "droplet_ids" : [ 16113 ]
+            }
+          } ],
+          "outbound_rules" : [ ]
+        }
+      },
+      "InventoryItem" : {
+        "type" : "object",
+        "required" : [ "id", "name", "manufacturer", "releaseDate" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "releaseDate" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33.001Z"
+          },
+          "manufacturer" : {
+            "$ref" : "#/components/schemas/Manufacturer"
+          }
+        }
+      },
+      "Manufacturer" : {
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "ACME Corporation"
+          },
+          "homePage" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "https://www.acme-corp.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "408-867-5309"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}
