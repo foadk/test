@@ -13,25 +13,141 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: Firewall
-    description: Firewall Calls
   - name: Chart
+    description: ''
+  - name: Firewall
+    description: ''
+  - name: Job
+    description: ''
+  - name: Private Network
     description: ''
   - name: Project
     description: ''
+  - name: Users
+    description: ''
   - name: VM
     description: ''
-  - name: admins
-    description: Secured Admin-only calls
-  - name: developers
-    description: Operations available to regular developers
 paths:
+  /chart/io/{srv}/{period}:
+    get:
+      tags:
+      - Chart
+      summary: IO chart
+      description: Get IO chart data
+      operationId: IOchart
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: period
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: month
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /chart/traffic/{srv}/{period}:
+    get:
+      tags:
+      - Chart
+      summary: traffic chart
+      description: Get traffic chart data
+      operationId: trafficchart
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: period
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 30days
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /chart/cpu/{srv}/{period}:
+    get:
+      tags:
+      - Chart
+      summary: CPU chart
+      description: Get CPU chart data
+      operationId: CPUchart
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: period
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: month
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
   /firewalls:
     get:
       tags:
       - Firewall
       summary: firewall list
-      description: 'TODO: Add Description'
+      description: Get list of firewalls for user
       operationId: firewalllist
       parameters:
       - name: Content-Type
@@ -59,7 +175,7 @@ paths:
       tags:
       - Firewall
       summary: create firewall
-      description: 'TODO: Add Description'
+      description: Create a new firewall
       operationId: createfirewall
       parameters:
       - name: Accept
@@ -109,7 +225,7 @@ paths:
       tags:
       - Firewall
       summary: firewall info
-      description: 'TODO: Add Description'
+      description: Get Information for firewall
       operationId: firewallinfo
       parameters:
       - name: ruleGroupId
@@ -146,7 +262,7 @@ paths:
       tags:
       - Firewall
       summary: update firewall
-      description: 'TODO: Add Description'
+      description: Update specified firewall
       operationId: updatefirewall
       parameters:
       - name: ruleGroupId
@@ -204,7 +320,7 @@ paths:
       tags:
       - Firewall
       summary: delete firewall
-      description: 'TODO: Add Description'
+      description: Delete specified firewall
       operationId: deletefirewall
       parameters:
       - name: ruleGroupId
@@ -242,7 +358,7 @@ paths:
       tags:
       - Firewall
       summary: add server to firewall
-      description: 'TODO: Add Description'
+      description: Add server to firewall
       operationId: addservertofirewall
       parameters:
       - name: ruleGroupId
@@ -282,7 +398,7 @@ paths:
       tags:
       - Firewall
       summary: delete server from firewall
-      description: 'TODO: Add Description'
+      description: Delete server from firewall
       operationId: deleteserverfromfirewall
       parameters:
       - name: ruleGroupId
@@ -322,7 +438,7 @@ paths:
       tags:
       - Firewall
       summary: add rule to firewall
-      description: 'TODO: Add Description'
+      description: Add rule to firewall
       operationId: addruletofirewall
       parameters:
       - name: ruleGroupId
@@ -378,7 +494,7 @@ paths:
       tags:
       - Firewall
       summary: remove rule from firewall
-      description: 'TODO: Add Description'
+      description: Remove rule from firewall
       operationId: removerulefromfirewall
       parameters:
       - name: ruleGroupId
@@ -420,31 +536,14 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /io/{srv}/{period}:
+  /job:
     get:
       tags:
-      - Chart
-      summary: io chart
-      description: 'TODO: Add Description'
-      operationId: iochart
+      - Job
+      summary: get jobs list
+      description: Displays a list of currently running or pending jobs for a user.
+      operationId: getjobslist
       parameters:
-      - name: srv
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: integer
-          format: int32
-          example: 16112
-      - name: period
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
-          example: month
       - name: Accept
         in: header
         description: ''
@@ -458,31 +557,21 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /traffic/{srv}/{period}:
+  /job/{jid}/checkTime:
     get:
       tags:
-      - Chart
-      summary: traffic chart
-      description: 'TODO: Add Description'
-      operationId: trafficchart
+      - Job
+      summary: check job time
+      description: Gets remaining time for current running job
+      operationId: checkjobtime
       parameters:
-      - name: srv
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: integer
-          format: int32
-          example: 16112
-      - name: period
+      - name: jid
         in: path
         description: ''
         required: true
         style: simple
         schema:
           type: string
-          example: 30days
       - name: Accept
         in: header
         description: ''
@@ -496,14 +585,246 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /cpu/{srv}/{period}:
+  /pn:
     get:
       tags:
-      - Chart
-      summary: cpu chart
-      description: 'TODO: Add Description'
-      operationId: cpuchart
+      - Private Network
+      summary: get private networks
+      description: Get list of private networks for user
+      operationId: getprivatenetworks
       parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/x-www-form-urlencoded
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Private Network
+      summary: create private network
+      description: Create a private network
+      operationId: createprivatenetwork
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - title
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: pn1
+        required: false
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /pn/{pnId}/servers:
+    get:
+      tags:
+      - Private Network
+      summary: get VMs of network
+      description: Get list of VMs for private network
+      operationId: getVMsofnetwork
+      parameters:
+      - name: pnId
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /pn/{pnId}:
+    put:
+      tags:
+      - Private Network
+      summary: update private network
+      description: Update title of private network
+      operationId: updateprivatenetwork
+      parameters:
+      - name: pnId
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/x-www-form-urlencoded
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - title
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: pn1
+        required: false
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Private Network
+      summary: delete private network
+      description: Delete private network
+      operationId: deleteprivatenetwork
+      parameters:
+      - name: pnId
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /pn/{pnId}/server/{srv}:
+    put:
+      tags:
+      - Private Network
+      summary: connect VM to network
+      description: Connect VM to private network
+      operationId: connectVMtonetwork
+      parameters:
+      - name: pnId
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16113
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - title
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: pn2
+        required: false
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Private Network
+      summary: remove VM from network
+      description: Remove VM from private network
+      operationId: removeVMfromnetwork
+      parameters:
+      - name: pnId
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
       - name: srv
         in: path
         description: ''
@@ -513,14 +834,6 @@ paths:
           type: integer
           format: int32
           example: 16112
-      - name: period
-        in: path
-        description: ''
-        required: true
-        style: simple
-        schema:
-          type: string
-          example: month
       - name: Accept
         in: header
         description: ''
@@ -539,7 +852,7 @@ paths:
       tags:
       - Project
       summary: get projects
-      description: 'TODO: Add Description'
+      description: Get a list of projects
       operationId: getprojects
       parameters:
       - name: Accept
@@ -559,7 +872,7 @@ paths:
       tags:
       - Project
       summary: create project
-      description: 'TODO: Add Description'
+      description: Create a new project
       operationId: createproject
       parameters:
       - name: Accept
@@ -592,9 +905,9 @@ paths:
     get:
       tags:
       - Project
-      summary: get servers
-      description: 'TODO: Add Description'
-      operationId: getservers
+      summary: get servers for projects
+      description: Get list of servers for project
+      operationId: getserversforprojects
       parameters:
       - name: projectId
         in: path
@@ -623,7 +936,7 @@ paths:
       tags:
       - Project
       summary: update project
-      description: 'TODO: Add Description'
+      description: Update specified project
       operationId: updateproject
       parameters:
       - name: projectId
@@ -673,7 +986,7 @@ paths:
       tags:
       - Project
       summary: delete project
-      description: 'TODO: Add Description'
+      description: Delete specified project
       operationId: deleteproject
       parameters:
       - name: projectId
@@ -711,7 +1024,7 @@ paths:
       tags:
       - Project
       summary: add server to project
-      description: 'TODO: Add Description'
+      description: Add server to project
       operationId: addservertoproject
       parameters:
       - name: projectId
@@ -757,7 +1070,7 @@ paths:
       tags:
       - Project
       summary: remove server from project
-      description: 'TODO: Add Description'
+      description: Remove server from project
       operationId: removeserverfromproject
       parameters:
       - name: projectId
@@ -791,13 +1104,146 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/info:
+  /user/credit:
+    get:
+      tags:
+      - Users
+      summary: show credit
+      description: Get credits for user
+      operationId: showcredit
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/isVerified:
+    get:
+      tags:
+      - Users
+      summary: is user verified
+      description: Whether user is verified
+      operationId: isuserverified
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/verify:
+    post:
+      tags:
+      - Users
+      summary: verify user
+      description: Verify a user
+      operationId: verifyuser
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - code
+              type: object
+              properties:
+                code:
+                  type: integer
+                  format: int32
+                  example: 53735
+        required: false
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/sendSms:
+    get:
+      tags:
+      - Users
+      summary: send sms
+      description: send SMS to user
+      operationId: sendsms
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /user/addFunds:
+    post:
+      tags:
+      - Users
+      summary: add funds
+      description: Add funds for user
+      operationId: addfunds
+      parameters:
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - amount
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  format: int32
+                  example: 25000
+        required: false
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /vm/{srv}/info:
     get:
       tags:
       - VM
-      summary: get info
-      description: 'TODO: Add Description'
-      operationId: getinfo
+      summary: get VM info
+      description: Get informatino for VM
+      operationId: getVMinfo
       parameters:
       - name: srv
         in: path
@@ -821,13 +1267,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /list:
+  /vm:
     get:
       tags:
       - VM
-      summary: get vm list
-      description: 'TODO: Add Description'
-      operationId: getvmlist
+      summary: get VM list
+      description: Get list of user's VMs
+      operationId: getVMlist
       parameters:
       - name: Accept
         in: header
@@ -842,13 +1288,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/changeTitle:
+  /vm/{srv}/changeTitle:
     put:
       tags:
       - VM
-      summary: change title
-      description: 'TODO: Add Description'
-      operationId: changetitle
+      summary: change VM title
+      description: Change title for a VM
+      operationId: changeVMtitle
       parameters:
       - name: srv
         in: path
@@ -893,12 +1339,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/dailybudget/set:
+  /vm/{srv}/dailybudget/set:
     put:
       tags:
       - VM
       summary: set daily budget
-      description: 'TODO: Add Description'
+      description: Set Daily Budget for VM
       operationId: setdailybudget
       parameters:
       - name: srv
@@ -945,13 +1391,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /os/list/all:
+  /vm/os/list/all:
     get:
       tags:
       - VM
-      summary: get all os list
-      description: 'TODO: Add Description'
-      operationId: getalloslist
+      summary: get all OS list
+      description: Get list of all available OS's
+      operationId: getallOSlist
       parameters:
       - name: Accept
         in: header
@@ -966,13 +1412,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /os/list/freecloud:
+  /vm/os/list/freecloud:
     get:
       tags:
       - VM
-      summary: get free cloud os list
-      description: 'TODO: Add Description'
-      operationId: getfreecloudoslist
+      summary: get free cloud OS list
+      description: Get list of OS's available for test VM
+      operationId: getfreecloudOSlist
       parameters:
       - name: Accept
         in: header
@@ -987,13 +1433,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/os/list:
+  /vm/{srv}/os/list:
     get:
       tags:
       - VM
-      summary: get os list for a server
-      description: 'TODO: Add Description'
-      operationId: getoslistforaserver
+      summary: get OS list for a VM
+      description: Get list of OS's available for specified VM
+      operationId: getOSlistforaVM
       parameters:
       - name: srv
         in: path
@@ -1017,12 +1463,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /freecloud/display:
+  /vm/freecloud/display:
     get:
       tags:
       - VM
       summary: show free cloud
-      description: 'TODO: Add Description'
+      description: Whether test VM is abailable for the user
       operationId: showfreecloud
       parameters:
       - name: Accept
@@ -1038,13 +1484,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/start:
+  /vm/{srv}/start:
     post:
       tags:
       - VM
-      summary: start vm
-      description: 'TODO: Add Description'
-      operationId: startvm
+      summary: start VM
+      description: Turn on specified VM
+      operationId: startVM
       parameters:
       - name: srv
         in: path
@@ -1068,13 +1514,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/stop:
+  /vm/{srv}/stop:
     post:
       tags:
       - VM
-      summary: stop vm
-      description: 'TODO: Add Description'
-      operationId: stopvm
+      summary: stop VM
+      description: Turn off specified VM
+      operationId: stopVM
       parameters:
       - name: srv
         in: path
@@ -1098,13 +1544,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/reset:
+  /vm/{srv}/reset:
     post:
       tags:
       - VM
-      summary: reset vm
-      description: 'TODO: Add Description'
-      operationId: resetvm
+      summary: reset VM
+      description: Restart specified VM
+      operationId: resetVM
       parameters:
       - name: srv
         in: path
@@ -1128,13 +1574,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/ip/list:
+  /vm/{srv}/ip/list:
     get:
       tags:
       - VM
-      summary: ip list
-      description: 'TODO: Add Description'
-      operationId: iplist
+      summary: IP list
+      description: Get list of IPs for VM
+      operationId: IPlist
       parameters:
       - name: srv
         in: path
@@ -1158,13 +1604,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /createVm:
+  /vm/createVm:
     post:
       tags:
       - VM
-      summary: create vm
-      description: 'TODO: Add Description'
-      operationId: createvm
+      summary: create VM
+      description: Create a new VM
+      operationId: createVM
       parameters:
       - name: Accept
         in: header
@@ -1211,13 +1657,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /createVm/privateCloud:
+  /vm/createVm/privateCloud:
     post:
       tags:
       - VM
-      summary: create vm in private cloud
-      description: 'TODO: Add Description'
-      operationId: createvminprivatecloud
+      summary: create VM in private cloud
+      description: Create a new private cloud VM
+      operationId: createVMinprivatecloud
       parameters:
       - name: Accept
         in: header
@@ -1269,13 +1715,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/rebuildVm:
+  /vm/{srv}/rebuildVm:
     post:
       tags:
       - VM
-      summary: rebuild vm
-      description: 'TODO: Add Description'
-      operationId: rebuildvm
+      summary: rebuild VM
+      description: Rebuild a VM
+      operationId: rebuildVM
       parameters:
       - name: srv
         in: path
@@ -1312,12 +1758,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/changeSpecs:
+  /vm/{srv}/changeSpecs:
     post:
       tags:
       - VM
       summary: change specs
-      description: 'TODO: Add Description'
+      description: Change specifications for a VM
       operationId: changespecs
       parameters:
       - name: srv
@@ -1361,12 +1807,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/changeRootPassword:
+  /vm/{srv}/changeRootPassword:
     get:
       tags:
       - VM
       summary: change root password
-      description: 'TODO: Add Description'
+      description: Change root password for a VM
       operationId: changerootpassword
       parameters:
       - name: srv
@@ -1391,12 +1837,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /createFreeCloud:
+  /vm/createFreeCloud:
     post:
       tags:
       - VM
       summary: create free cloud
-      description: 'TODO: Add Description'
+      description: Create Test VM
       operationId: createfreecloud
       parameters:
       - name: Accept
@@ -1425,13 +1871,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/bills:
+  /vm/{srv}/bills:
     get:
       tags:
       - VM
-      summary: bills
-      description: 'TODO: Add Description'
-      operationId: bills
+      summary: get bills
+      description: Get bills for VM
+      operationId: getbills
       parameters:
       - name: srv
         in: path
@@ -1455,12 +1901,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/rescue/enable:
+  /vm/{srv}/rescue/enable:
     post:
       tags:
       - VM
       summary: enable rescue
-      description: 'TODO: Add Description'
+      description: Enable rescue for VM
       operationId: enablerescue
       parameters:
       - name: srv
@@ -1485,12 +1931,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/rescue/disable:
+  /vm/{srv}/rescue/disable:
     post:
       tags:
       - VM
       summary: disable rescue
-      description: 'TODO: Add Description'
+      description: Disable rescue for a VM
       operationId: disablerescue
       parameters:
       - name: srv
@@ -1515,13 +1961,13 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/vnc:
+  /vm/{srv}/vnc:
     get:
       tags:
       - VM
-      summary: Vnc
-      description: 'TODO: Add Description'
-      operationId: Vnc
+      summary: VNC
+      description: Get VNC access
+      operationId: VNC
       parameters:
       - name: srv
         in: path
@@ -1553,12 +1999,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/addBandwidth:
+  /vm/{srv}/addBandwidth:
     post:
       tags:
       - VM
       summary: add bandwidth
-      description: 'TODO: Add Description'
+      description: Add bandwith for a VM
       operationId: addbandwidth
       parameters:
       - name: srv
@@ -1597,12 +2043,12 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{srv}/addBandwidth/getConfigs:
+  /vm/{srv}/addBandwidth/getConfigs:
     get:
       tags:
       - VM
       summary: add bandwidth - get configs
-      description: 'TODO: Add Description'
+      description: Get bandwith configs for a VM
       operationId: addbandwidth-getconfigs
       parameters:
       - name: srv
@@ -1627,67 +2073,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /inventory:
-    get:
-      tags:
-        - developers
-      summary: searches inventory
-      operationId: searchInventory
-      description: |
-        By passing in the appropriate options, you can search for
-        available inventory in the system
-      parameters:
-        - in: query
-          name: searchString
-          description: pass an optional search string for looking up inventory
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: skip
-          description: number of records to skip for pagination
-          schema:
-            type: integer
-            format: int32
-            minimum: 0
-        - in: query
-          name: limit
-          description: maximum number of records to return
-          schema:
-            type: integer
-            format: int32
-            minimum: 0
-            maximum: 50
-      responses:
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InventoryItem'
-        '400':
-          description: bad input parameter
-    post:
-      tags:
-        - admins
-      summary: adds an inventory item
-      operationId: addInventory
-      description: Adds an item to the system
-      responses:
-        '201':
-          description: item created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: an existing item already exists
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/InventoryItem'
-        description: Inventory item to add
 components:
   schemas:
     createfirewallrequest:
@@ -2027,39 +2412,3 @@ components:
             droplet_ids:
             - 16113
         outbound_rules: []
-    InventoryItem:
-      type: object
-      required:
-        - id
-        - name
-        - manufacturer
-        - releaseDate
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        name:
-          type: string
-          example: Widget Adapter
-        releaseDate:
-          type: string
-          format: date-time
-          example: '2016-08-29T09:12:33.001Z'
-        manufacturer:
-          $ref: '#/components/schemas/Manufacturer'
-    Manufacturer:
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          example: ACME Corporation
-        homePage:
-          type: string
-          format: url
-          example: 'https://www.acme-corp.com'
-        phone:
-          type: string
-          example: 408-867-5309
-      type: object
