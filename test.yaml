@@ -27,6 +27,14 @@ tags:
     description: ''
   - name: VM
     description: ''
+  - name: Private Cloud
+    description: ''
+  - name: Billing
+    description: ''
+  - name: Backup
+    description: ''
+  - name: Monitoring
+    description: ''
 paths:
   /chart/io/{srv}/{period}:
     get:
@@ -2068,6 +2076,418 @@ paths:
         schema:
           type: string
           example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/nodes:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Private Cloud Nodes
+      description: Get List of private cloud nodes
+      operationId: GetPrivateCloudNodes
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/history:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Private Cloud Nodes History
+      description: Get history of private cloud node
+      operationId: GetPrivateCloudNodesHistory
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 566
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/storages:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Private Cloud Nodes Storages
+      description: Get storages of private cloud nodes
+      operationId: GetPrivateCloudNodesStorages
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 566
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/allowed-ips:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Private Cloud Node Allowed IPs
+      description: Get allowed IPs of private cloud node
+      operationId: GetPrivateCloudNodeAllowedIPs
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 566
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/user/ips:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Private Cloud User IPs
+      description: Get IPs of private cloud
+      operationId: GetPrivateCloudUserIPs
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/available-resources:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get User Private Cloud Policies
+      description: Get policies of private cloud node
+      operationId: GetUserPrivateCloudPolicies
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 566
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/max-resources:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Max Node Resources
+      description: Get Maximum resources for node
+      operationId: GetMaxNodeResources
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 556
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/node/{node}/1/max-available-storage-free-space:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get Node Free Storage Usage
+      description: Get free storage usage for node
+      operationId: GetNodeFreeStorageUsage
+      parameters:
+      - name: node
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 566
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /private-cloud/list/{location}:
+    get:
+      tags:
+      - Private Cloud
+      summary: Get private cloud list
+      description: Get list of private cloud nodes of user
+      operationId: Getprivatecloudlist
+      parameters:
+      - name: location
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: ir
+      - name: Accept
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /billing/cycles:
+    get:
+      tags:
+      - Billing
+      summary: Get Billing Cycles
+      description: Get billing cycles
+      operationId: GetBillingCycles
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /backup/{srv}/get-agent-status:
+    get:
+      tags:
+      - Backup
+      summary: Get Agent Status
+      description: Get agent status for VM
+      operationId: GetAgentStatus
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: Postman-Token
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 00117ca7-f151-46ca-afd0-d1a130100aec
+      - name: cache-control
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: no-cache
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /backup/{srv}/install-agent:
+    get:
+      tags:
+      - Backup
+      summary: Install Agent
+      description: Install agent for VM
+      operationId: InstallAgent
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: Postman-Token
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 00117ca7-f151-46ca-afd0-d1a130100aec
+      - name: cache-control
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: no-cache
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /backup/{srv}/start-backup-job/{job_id}:
+    get:
+      tags:
+      - Backup
+      summary: Start Backup Job
+      description: Start backup job for VM
+      operationId: StartBackupJob
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: job_id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Postman-Token
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 00117ca7-f151-46ca-afd0-d1a130100aec
+      - name: cache-control
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: no-cache
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /backup/{srv}/install-agent/status:
+    get:
+      tags:
+      - Backup
+      summary: Install Agent Status
+      description: Get status for agent installation
+      operationId: InstallAgentStatus
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 16112
+      - name: Postman-Token
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 00117ca7-f151-46ca-afd0-d1a130100aec
+      - name: cache-control
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: no-cache
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /backup/{srv}/enable:
+    post:
+      tags:
+      - Backup
+      summary: Enable Backup
+      description: 'TODO: Add Description'
+      operationId: EnableBackup
+      parameters:
+      - name: srv
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 46736
+      - name: Postman-Token
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 00117ca7-f151-46ca-afd0-d1a130100aec
+      - name: cache-control
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: no-cache
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /monitoring/block-based-backup-status:
+    get:
+      tags:
+      - Monitoring
+      summary: Monitoring - Block Based Backup Status
+      description: Get block based backup status
+      operationId: Monitoring-BlockBasedBackupStatus
+      parameters: []
       responses:
         200:
           description: ''
